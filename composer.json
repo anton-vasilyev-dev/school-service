@@ -1,0 +1,14 @@
+{
+    "name": "home/school-service",
+    "description": "School Service",
+    "license": "",
+    "keywords": [
+        "school"
+    ],
+    "homepage": "http://zf2.school59nn.ru/",
+    "require": {
+        "php": ">=5.3.3",
+        "zendframework/zendframework": "2.*",
+        "doctrine/common": "2.1.*"
+    }
+}
