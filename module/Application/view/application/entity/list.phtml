@@ -1,16 +1,24 @@
+<h2></h2>
 <table>
     <?php foreach ($this->headers as $header) ?>
     <th><?php echo $header ?></th>
     <?php ?>
+    <th><?php echo $this->translate('Actions') ?></th>
 <?php if (count($this->paginator)): ?>
     <?php foreach ($this->paginator as $item): ?>
         <?php foreach ($item as $key => $value): ?>
         <td><?php echo $value ?></td>
         <?php endforeach; ?>
+        <td>
+            <a href=""><?php echo $this->translate('edit') ?></a>&nbsp;|&nbsp;
+            <a href=""><?php echo $this->translate('delete') ?></a>
+        </td>
     <?php endforeach; ?>
 <?php else: ?>
-    <td colspan="<?php count($this->headers)?>"><?php echo $this->translate('No data') ?></td>
+    <td colspan="<?php count($this->headers) + 1 ?>"><?php echo $this->translate('No data') ?></td>
 <?php endif; ?>
 </table>
 
 <?php echo $this->paginationControl($this->paginator, 'sliding') ?>
+
+<a href=""><?php echo $this->translate('add') ?></a>

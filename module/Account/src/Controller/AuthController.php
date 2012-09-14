@@ -1,8 +1,28 @@
 <?php
-/**
- * Created by JetBrains PhpStorm.
- * User: antonv
- * Date: 10.09.12
- * Time: 16:51
- * To change this template use File | Settings | File Templates.
- */
+
+namespace Account\Controller;
+
+use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\ViewModel;
+
+class AuthController extends AbstractActionController
+{
+    public function loginAction()
+    {
+        $form = $this->_getForm();
+
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+
+        }
+
+        return array(
+            'form' => $form
+        );
+    }
+
+    public function logoutAction()
+    {
+
+    }
+}
