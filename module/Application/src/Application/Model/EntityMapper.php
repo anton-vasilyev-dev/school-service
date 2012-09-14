@@ -7,25 +7,25 @@ use Exception;
 
 class EntityMapper
 {
-    protected $_dbTable;
+    protected $_table;
 
-    protected $_dbModelName;
+    protected $_modelName;
 
-    public function setDbTable(AbstractTable $dbTable)
+    public function setTable(AbstractTable $table)
     {
-        if (is_string($dbTable)) {
-            $dbTable = new $dbTable();
+        if (is_string($table)) {
+            $table = new $table();
         }
-        if (!$dbTable instanceof AbstractTable) {
+        if (!$table instanceof AbstractTable) {
             throw new Exception('Invalid table data gateway provided');
         }
-        $this->_dbTable = $dbTable;
+        $this->_table = $table;
         return $this;
     }
 
-    public function getDbTable()
+    public function getTable()
     {
-        return $this->_dbTable;
+        return $this->_table;
     }
 
     public function save(EntityModel $model)
@@ -34,9 +34,9 @@ class EntityMapper
 
         if (null === ($id = $model->getId())) {
             unset($data['id']);
-            $this->getDbTable()->insert($data);
+            $this->getTable()->insert($data);
         } else {
-            $this->getDbTable()->update($data, array('id = ?' => $id));
+            $this->getTable()->update($data, array('id = ?' => $id));
         }
     }
 
@@ -47,16 +47,21 @@ class EntityMapper
             return;
         }
         $row = $result->current();
-        $model = new $this->_dbModelName();
+        $model = new $this->_modelName();
         $model->exchangeArray($row->toArray());
     }
 
-    public function fetchAll($where)
+    public function create()
     {
-        $resultSet = $this->getDbTable()->select($where);
+        return new $this->_modelName();
+    }
+
+    public function fetchAll()
+    {
+        $resultSet = $this->select();
         $entries   = array();
         foreach ($resultSet as $row) {
-            $entry = new $this->_dbModelName();
+            $entry = new $this->_modelName();
             $entry->exchangeArray($row->toArray());
             $entries[] = $entry;
         }
@@ -65,6 +70,8 @@ class EntityMapper
 
     public function delete($id)
     {
-
+        $this->getDbTable()->delete(array(
+            'id' => $id
+        ));
     }
 }

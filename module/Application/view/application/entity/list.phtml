@@ -1,8 +1,16 @@
-<?php
-/**
- * Created by JetBrains PhpStorm.
- * User: antonv
- * Date: 10.09.12
- * Time: 17:02
- * To change this template use File | Settings | File Templates.
- */
+<table>
+    <?php foreach ($this->headers as $header) ?>
+    <th><?php echo $header ?></th>
+    <?php ?>
+<?php if (count($this->paginator)): ?>
+    <?php foreach ($this->paginator as $item): ?>
+        <?php foreach ($item as $key => $value): ?>
+        <td><?php echo $value ?></td>
+        <?php endforeach; ?>
+    <?php endforeach; ?>
+<?php else: ?>
+    <td colspan="<?php count($this->headers)?>"><?php echo $this->translate('No data') ?></td>
+<?php endif; ?>
+</table>
+
+<?php echo $this->paginationControl($this->paginator, 'sliding') ?>
