@@ -2,7 +2,6 @@
 
 namespace Account\Controller;
 
-use Application\Controller;
 use Account\Form;
 use Account\Model;
 
@@ -17,6 +16,7 @@ class IndexController extends EntityController
         'email'      => 'E-mail',
         'lastName'   => 'Last name',
         'middleName' => 'Middle name',
-        'firstName'  => 'First name'
+        'firstName'  => 'First name',
+        'role'       => 'Role'
     );
 }
