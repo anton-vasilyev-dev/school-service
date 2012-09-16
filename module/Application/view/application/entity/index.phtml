@@ -1,11 +1,11 @@
 <h2></h2>
 <table>
-    <?php foreach ($this->headers as $header) ?>
+    <?php foreach ($headers as $header) ?>
     <th><?php echo $header ?></th>
     <?php ?>
     <th><?php echo $this->translate('Actions') ?></th>
-<?php if (count($this->paginator)): ?>
-    <?php foreach ($this->paginator as $item): ?>
+<?php if (count($paginator)): ?>
+    <?php foreach ($paginator as $item): ?>
         <?php foreach ($item as $key => $value): ?>
         <td><?php echo $value ?></td>
         <?php endforeach; ?>
@@ -15,10 +15,10 @@
         </td>
     <?php endforeach; ?>
 <?php else: ?>
-    <td colspan="<?php count($this->headers) + 1 ?>"><?php echo $this->translate('No data') ?></td>
+    <td colspan="<?php count($headers) + 1 ?>"><?php echo $this->translate('No data') ?></td>
 <?php endif; ?>
 </table>
 
-<?php echo $this->paginationControl($this->paginator, 'sliding') ?>
+<?php echo $this->paginationControl($paginator, 'sliding') ?>
 
 <a href=""><?php echo $this->translate('add') ?></a>

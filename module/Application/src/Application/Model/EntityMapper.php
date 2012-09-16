@@ -2,7 +2,6 @@
 
 namespace Application\Model;
 
-use Zend\Db\Table\AbstractTable;
 use Exception;
 
 class EntityMapper
@@ -11,18 +10,21 @@ class EntityMapper
 
     protected $_modelName;
 
-    public function setTable(AbstractTable $table)
+    public function setTable(\Zend\Db\TableGateway\TableGateway $table)
     {
         if (is_string($table)) {
             $table = new $table();
         }
-        if (!$table instanceof AbstractTable) {
+        if (!$table instanceof \Zend\Db\TableGateway\TableGateway) {
             throw new Exception('Invalid table data gateway provided');
         }
         $this->_table = $table;
         return $this;
     }
 
+    /**
+     * @return \Zend\Db\TableGateway\TableGateway
+     */
     public function getTable()
     {
         return $this->_table;

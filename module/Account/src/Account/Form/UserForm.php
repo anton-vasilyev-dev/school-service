@@ -1,6 +1,8 @@
 <?php
 
-class UserForm extends Form
+namespace Account\Form;
+
+class UserForm extends \Zend\Form\Form
 {
     public function __construct($name = null)
     {
@@ -69,11 +71,16 @@ class UserForm extends Form
 
         $this->add(array(
             'name' => 'role',
-            'attributes' => array(
-                'type'  => 'select',
-            ),
+            'type' => 'Zend\Form\Element\Select',
             'options' => array(
                 'label' => 'Role',
+                'value_options' => array(
+                    'guest'   => 'Гость',
+                    'student' => 'Ученик',
+                    'parent'  => 'Родитель',
+                    'teacher' => 'Учитель',
+                    'admin'   => 'Администратор'
+                )
             ),
         ));
 
@@ -83,7 +90,16 @@ class UserForm extends Form
             'attributes' => array(
                 'type'  => 'submit',
                 'value' => 'Go',
-                'id' => 'submitbutton',
+                'id' => 'submit-button',
+            ),
+        ));
+
+        $this->add(array(
+            'name' => 'cancel',
+            'attributes' => array(
+                'type'  => 'button',
+                'value' => 'Cancel',
+                'id' => 'cancel-button',
             ),
         ));
     }

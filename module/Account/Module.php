@@ -8,17 +8,34 @@ class Module extends \Application\Module
 {
     public function getConfig()
     {
-        return array_merge_recursive(include __DIR__ . '/config/module.config.php', parent::getConfig());
+        $config = array_merge_recursive(parent::getConfig(), include __DIR__ . '/config/module.config.php');
+
+        return $config;
     }
 
     public function getAutoloaderConfig()
     {
-        return array_merge_recursive(array(
+        $config = array_merge_recursive(parent::getAutoloaderConfig(), array(
             'Zend\Loader\StandardAutoloader' => array(
                 'namespaces' => array(
                     __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
                 ),
             ),
-        ), parent::getAutoloaderConfig());
+        ));
+
+        return $config;
+    }
+
+    public function getServiceConfig()
+    {
+        return array(
+            'factories' => array(
+                'Account\Model\UserTable' =>  function($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $table     = new \Zend\Db\TableGateway\TableGateway('user', $dbAdapter);
+                    return $table;
+                },
+            ),
+        );
     }
 }

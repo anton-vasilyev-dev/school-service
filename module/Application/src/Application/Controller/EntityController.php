@@ -9,15 +9,15 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Application\Model;
 use Application\Form;
+use Application\Paginator\Adapter\DbSelect as DbSelect;
 
 class EntityController extends AbstractActionController
 {
     protected $_formName;
 
-    /**
-     * @var
-     */
     protected $_mapperName;
+
+    protected $_tableName;
 
     protected $_listHeaders;
 
@@ -38,6 +38,7 @@ class EntityController extends AbstractActionController
     {
         if ($this->_mapper == null) {
             $this->_mapper = new $this->_mapperName();
+            $this->_mapper->setTable($this->getServiceLocator()->get($this->_tableName));
         }
 
         return $this->_mapper;
@@ -128,13 +129,16 @@ class EntityController extends AbstractActionController
 
     public function indexAction()
     {
-        $adapter = new DbSelect($this->_getMappper()->getTable()->sql());
-        $paginator = new Paginator($adapter);
+        $adapter = new DbSelect(
+            $this->_getMappper()->getTable()->getSql()->select(),
+            $this->_getMappper()->getTable()->getAdapter()
+        );
+        $paginator = new \Zend\Paginator\Paginator($adapter);
         $paginator->setCurrentPageNumber($this->params()->fromRoute('page'));
 
         return array(
             'paginator' => $paginator,
-            'headers'   => $this->_getListHeaders()
+            'headers'   => $this->_getListHeaders(),
         );
     }
 }

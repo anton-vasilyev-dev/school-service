@@ -7,8 +7,10 @@ use Zend\InputFilter\InputFilter;
 use Zend\InputFilter\InputFilterAwareInterface;
 use Zend\InputFilter\InputFilterInterface;
 
-class EntityModel extends InputFilterAwareInterface
+class EntityModel implements InputFilterAwareInterface
 {
+    protected $_id;
+
     protected $_inputFilter;
 
     public function exchangeArray($data)
@@ -37,9 +39,9 @@ class EntityModel extends InputFilterAwareInterface
 
     public function getInputFilter()
     {
-        if (!$this->_inputFilter) {
-            /*$inputFilter = new InputFilter();
-            $factory     = new InputFactory();
+        if ($this->_inputFilter == null) {
+            $inputFilter = new InputFilter();
+            /*$factory     = new InputFactory();
 
             $inputFilter->add($factory->createInput(array(
                 'name'     => 'id',
@@ -47,7 +49,7 @@ class EntityModel extends InputFilterAwareInterface
                 'filters'  => array(
                     array('name' => 'Int'),
                 ),
-            )));
+            )));/*
 
             $inputFilter->add($factory->createInput(array(
                 'name'     => 'artist',
@@ -86,10 +88,22 @@ class EntityModel extends InputFilterAwareInterface
                     ),
                 ),
             )));
+            */
 
-            $this->inputFilter = $inputFilter;*/
+            $this->_inputFilter = $inputFilter;
         }
 
         return $this->_inputFilter;
+    }
+
+    public function setId($id)
+    {
+        $this->_id = $id;
+        return $this;
+    }
+
+    public function getId()
+    {
+        return $this->_id;
     }
 }

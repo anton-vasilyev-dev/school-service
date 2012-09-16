@@ -7,9 +7,11 @@ use Account\Model;
 
 class IndexController extends EntityController
 {
-    protected $_formName = 'UserForm';
+    protected $_formName = '\Account\Form\UserForm';
 
-    protected $_mapperName = 'UserMapper';
+    protected $_mapperName = '\Account\Model\UserMapper';
+
+    protected $_tableName = '\Account\Model\UserTable';
 
     protected $_listHeaders = array(
         'login'      => 'Login',

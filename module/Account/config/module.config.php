@@ -3,33 +3,20 @@
 return array(
     'router' => array(
         'routes' => array(
-            'account' => array(
-                'type'    => 'Literal',
+            'account_entity' => array(
+                'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/account',
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'Account\Controller',
-                        'controller'    => 'Index',
-                        'action'        => 'index',
+                    'route'    => '/account/[:action/][page/:page/][id/:id/]',
+                    'constraints' => array(
+                        'action'    => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'        => '[0-9]+',
+                        'page'      => '[0-9]+'
                     ),
-                ),
-                'may_terminate' => true,
-                'child_routes' => array(
-                    'default' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/[:controller[/:action]]',
-                            'constraints' => array(
-                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'id'         => '[0-9]*'
-                            ),
-                            'defaults' => array(
-                                'controller' => 'index',
-                                'action'     => 'index',
-                                'id'         => 0
-                            ),
-                        ),
+                    'defaults' => array(
+                        'controller' => 'index',
+                        'action'     => 'index',
+                        'id'         => 0,
+                        'page'       => '1',
                     ),
                 ),
             ),
@@ -46,8 +33,8 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Account\Controller\Auth'  => 'Album\Controller\AuthController',
-            'Account\Controller\Index' => 'Album\Controller\IndexController',
+            'auth'  => 'Account\Controller\AuthController',
+            'index' => 'Account\Controller\IndexController',
         ),
     ),
     'view_manager' => array(

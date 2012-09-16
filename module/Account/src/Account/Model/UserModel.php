@@ -2,7 +2,7 @@
 
 namespace Account\Model;
 
-use Application\Model;
+use Application\Model\EntityModel as EntityModel;
 use Zend\Permissions\Acl\Acl;
 use Zend\Permissions\Acl\Role\GenericRole as Role;
 use Zend\Permissions\Acl\Resource\GenericResource as Resource;
@@ -29,13 +29,13 @@ class UserModel extends EntityModel
     {
         $this->_acl = new Acl();
 
-        $acl->addRole(new Role('guest'))
+        $this->_acl->addRole(new Role('guest'))
             ->addRole(new Role('student'), 'guest')
             ->addRole(new Role('parent'), 'student')
             ->addRole(new Role('teacher'), 'guest')
             ->addRole(new Role('admin'), 'teacher');
 
-        $acl->addResource(new Resource('account\user'))
+        $this->_acl->addResource(new Resource('account\index'))
             ->addResource(new Resource('account\auth'))
             ->addResource(new Resource('interview'))
             ->addResource(new Resource('wall'))
@@ -47,8 +47,12 @@ class UserModel extends EntityModel
             ->addResource(new Resource('school\subject'))
             ->addResource(new Resource('school\teacher'));
 
-        $acl->allow('guest', 'account\auth', 'login');
-        $acl->deny('guest', 'account\auth', 'logout');
+        $this->_acl->allow('guest', 'account\auth', 'login')
+                   ->deny('guest', 'account\auth', 'logout')
+                   ->allow('guest', 'account\index', 'index')
+                   ->allow('guest', 'account\index', 'add')
+                   ->allow('guest', 'account\index', 'edit')
+                   ->allow('guest', 'account\index', 'delete');
         // ...
     }
 
@@ -130,6 +134,10 @@ class UserModel extends EntityModel
 
     public function isAllowed($resource, $permission)
     {
-        return $this->_acl->isAllowed($this->getRole(), $resource, $permission);
+        $role = $this->getRole();
+        if ($role == null) {
+            $role = 'guest';
+        }
+        return $this->_acl->isAllowed($role, $resource, $permission);
     }
 }
