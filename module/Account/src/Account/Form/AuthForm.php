@@ -1,11 +1,10 @@
 <?php
 
-class AuthForm extends Form
+class AuthForm extends \Application\Form\EntityForm
 {
     public function __construct($name = null)
     {
         parent::__construct('auth');
-        $this->setAttribute('method', 'post');
 
         $this->add(array(
             'name' => 'login',
@@ -24,16 +23,6 @@ class AuthForm extends Form
             ),
             'options' => array(
                 'label' => 'Password',
-            ),
-        ));
-
-        /// ????
-        $this->add(array(
-            'name' => 'submit',
-            'attributes' => array(
-                'type'  => 'submit',
-                'value' => 'Go',
-                'id' => 'submitbutton',
             ),
         ));
     }

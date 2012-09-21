@@ -2,12 +2,11 @@
 
 namespace Account\Form;
 
-class UserForm extends \Zend\Form\Form
+class UserForm extends \Application\Form\EntityForm
 {
-    public function __construct($name = null)
+    public function __construct($name = 'user')
     {
-        parent::__construct('user');
-        $this->setAttribute('method', 'post');
+        parent::__construct($name);
 
         $this->add(array(
             'name' => 'login',
@@ -81,25 +80,6 @@ class UserForm extends \Zend\Form\Form
                     'teacher' => 'Учитель',
                     'admin'   => 'Администратор'
                 )
-            ),
-        ));
-
-        /// ?????
-        $this->add(array(
-            'name' => 'submit',
-            'attributes' => array(
-                'type'  => 'submit',
-                'value' => 'Go',
-                'id' => 'submit-button',
-            ),
-        ));
-
-        $this->add(array(
-            'name' => 'cancel',
-            'attributes' => array(
-                'type'  => 'button',
-                'value' => 'Cancel',
-                'id' => 'cancel-button',
             ),
         ));
     }
