@@ -17,28 +17,40 @@
         </div>
         <div class="floatLeft content-menu-slideshow">
             <div class="floatLeft fullWidth slideshow-line" id="sl1">
-                <div class="floatLeft slideshow-block"><img src="/images/person1.jpg" alt="" /></div>
-                <div class="floatLeft slideshow-block"><img src="/images/person2.jpg" alt="" /></div>
-                <div class="floatLeft slideshow-block"><img src="/images/person3.jpg" alt="" /></div>
-                <div class="floatLeft slideshow-block"><img src="/images/person4.jpg" alt="" /></div>
+                <?php $path = $_SERVER['DOCUMENT_ROOT'] . '/images/exhibition/' ?>
+                <?php $files = scandir($path) ?>
+                <?php foreach ($files as $file) { ?>
+                <?php if ($file != '.' && $file != '..') { ?>
+                <div class="floatLeft slideshow-block"><img src="/images/exhibition/<?php echo $file ?>" alt="" /></div>
+                <?php } ?>
+                <?php } ?>
             </div>
             <div class="floatLeft fullWidth slideshow-line" id="sl2">
-                <div class="floatLeft slideshow-block"><img src="/images/person2.jpg" alt="" /></div>
-                <div class="floatLeft slideshow-block"><img src="/images/person2.jpg" alt="" /></div>
-                <div class="floatLeft slideshow-block"><img src="/images/person3.jpg" alt="" /></div>
-                <div class="floatLeft slideshow-block"><img src="/images/person4.jpg" alt="" /></div>
+                <?php $path = $_SERVER['DOCUMENT_ROOT'] . '/images/teachers/' ?>
+                <?php $files = scandir($path) ?>
+                <?php foreach ($files as $file) { ?>
+                <?php if ($file != '.' && $file != '..') { ?>
+                    <div class="floatLeft slideshow-block"><img src="/images/teachers/<?php echo $file ?>" alt="" /></div>
+                    <?php } ?>
+                <?php } ?>
             </div>
             <div class="floatLeft fullWidth slideshow-line" id="sl3">
-                <div class="floatLeft slideshow-block"><img src="/images/person3.jpg" alt="" /></div>
-                <div class="floatLeft slideshow-block"><img src="/images/person2.jpg" alt="" /></div>
-                <div class="floatLeft slideshow-block"><img src="/images/person3.jpg" alt="" /></div>
-                <div class="floatLeft slideshow-block"><img src="/images/person4.jpg" alt="" /></div>
+                <?php $path = $_SERVER['DOCUMENT_ROOT'] . '/images/history/' ?>
+                <?php $files = scandir($path) ?>
+                <?php foreach ($files as $file) { ?>
+                <?php if ($file != '.' && $file != '..') { ?>
+                    <div class="floatLeft slideshow-block"><img src="/images/history/<?php echo $file ?>" alt="" /></div>
+                    <?php } ?>
+                <?php } ?>
             </div>
             <div class="floatLeft fullWidth slideshow-line" id="sl4">
-                <div class="floatLeft slideshow-block"><img src="/images/person4.jpg" alt="" /></div>
-                <div class="floatLeft slideshow-block"><img src="/images/person2.jpg" alt="" /></div>
-                <div class="floatLeft slideshow-block"><img src="/images/person3.jpg" alt="" /></div>
-                <div class="floatLeft slideshow-block"><img src="/images/person4.jpg" alt="" /></div>
+                <?php $path = $_SERVER['DOCUMENT_ROOT'] . '/images/students/' ?>
+                <?php $files = scandir($path) ?>
+                <?php foreach ($files as $file) { ?>
+                <?php if ($file != '.' && $file != '..') { ?>
+                    <div class="floatLeft slideshow-block"><img src="/images/students/<?php echo $file ?>" alt="" /></div>
+                    <?php } ?>
+                <?php } ?>
             </div>
         </div>
     </div>
@@ -66,7 +78,7 @@
             <a href="/info/ege-gia/" title="Всё о ЕГЭ и ГИА" target="_self">Всё о ЕГЭ и ГИА</a>
         </div>
         <div class="floatLeft fullWidth content-links-line">
-            <a href="/info/news/" title="Школьные новости" target="_self">Школьные новости</a>
+            <a href="/info/projects/" title="Школьные новости" target="_self">Наши проекты</a>
         </div>
     </div>
 </div>
