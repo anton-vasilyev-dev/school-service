@@ -127,7 +127,7 @@ class EntityController extends AbstractActionController
 
     public function indexAction()
     {
-        $adapter = new DbSelect(
+        $adapter = new \Zend\Paginator\Adapter\DbSelect(
             $this->_getMappper()->getTable()->getSql()->select(),
             $this->_getMappper()->getTable()->getAdapter()
         );
