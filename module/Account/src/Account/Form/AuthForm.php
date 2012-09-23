@@ -1,10 +1,13 @@
 <?php
 
-class AuthForm extends \Application\Form\EntityForm
+namespace Account\Form;
+
+class AuthForm extends \Zend\Form\Form
 {
     public function __construct($name = null)
     {
         parent::__construct('auth');
+        $this->setAttribute('class', 'entity-form');
 
         $this->add(array(
             'name' => 'login',
@@ -12,7 +15,7 @@ class AuthForm extends \Application\Form\EntityForm
                 'type'  => 'text',
             ),
             'options' => array(
-                'label' => 'Login'
+                'label' => 'Логин'
             ),
         ));
 
@@ -22,7 +25,16 @@ class AuthForm extends \Application\Form\EntityForm
                 'type'  => 'password',
             ),
             'options' => array(
-                'label' => 'Password',
+                'label' => 'Пароль',
+            ),
+        ));
+
+        $this->add(array(
+            'name' => 'submit',
+            'attributes' => array(
+                'type'  => 'submit',
+                'value' => 'Отправить',
+                'id' => 'submit-button',
             ),
         ));
     }

@@ -1,57 +1,62 @@
-<?php echo $this->doctype(); ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <?php echo $this->headTitle('Планета знаний школа №59')->setSeparator(' - ')->setAutoEscape(false) ?>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <?php echo $this->headTitle('ZF2 '. $this->translate('Skeleton Application'))->setSeparator(' - ')->setAutoEscape(false) ?>
-
-    <?php echo $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0') ?>
-
-    <!-- Le styles -->
-    <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/images/favicon.ico'))
-                    ->prependStylesheet($this->basePath() . '/css/bootstrap-responsive.min.css')
-                    ->prependStylesheet($this->basePath() . '/css/style.css')
-                    ->prependStylesheet($this->basePath() . '/css/bootstrap.min.css') ?>
+    <!-- Styles -->
+    <?php echo $this->headLink()->prependStylesheet($this->basePath() . '/css/style.css')
+                                ->prependStylesheet($this->basePath() . '/css/developer.css')
+    ?>
 
     <!-- Scripts -->
-    <?php echo $this->headScript()->prependFile($this->basePath() . '/js/html5.js', 'text/javascript', array('conditional' => 'lt IE 9',))
-                                  ->prependFile($this->basePath() . '/js/jquery-1.7.2.min.js') ?>
+    <?php echo $this->headScript()->prependFile($this->basePath() . '/js/jquery-1.8.0.min.js')
+                    ->appendFile($this->basePath() . '/js/placeholder.js') ?>
 
-  </head>
+    <title>Планета знаний школа №59</title>
+    <script type="text/javascript">
+        $(function(){
+            $('input[placeholder], textarea[placeholder]').placeholder();
+        });
+    </script>
 
-  <body>
-
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Skeleton Application') ?></a>
-          <div class="nav-collapse">
-            <ul class="nav">
-              <li class="active"><a href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Home') ?></a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
+</head>
+<body>
+<div class="main">
+    <!-- header -->
+    <div class="floatLeft fullWidth header">
+        <!-- header top -->
+        <div class="floatLeft fullWidth header-top">
+            <div class="floatLeft header-logo"><img src="/images/logo.png" alt="" /></div>
+            <div class="floatRight header-login">
+                <form action="" class="floatLeft fullWidth">
+                    <div class="floatLeft fullWidth header-login-line"><span>Вход в систему:</span></div>
+                    <div class="floatLeft fullWidth header-login-line"><input type="text" placeholder="логин"  name="login"/></div>
+                    <div class="floatLeft fullWidth header-login-line"><input type="password" placeholder="пароль"  name="password"/></div>
+                    <div class="floatLeft fullWidth header-login-line"><a href="/account/registration/" title="Регистрация" target="_self">Регистрация</a></div>
+                </form>
+            </div>
         </div>
-      </div>
+        <!-- /header top -->
+        <!-- header bottom -->
+        <div class="floatLeft fullWidth header-bottom">
+            <div class="floatLeft header-navi">
+                <div class="floatLeft header-navi-block"><a href="/" title="Главная страница" target="_self" class="navi1">Главная<br />страница</a></div>
+                <div class="floatLeft header-navi-block"><a href="/info/director/" title="Слово директору" target="_self"  class="navi2">Слово<br />директору</a></div>
+                <div class="floatLeft header-navi-block"><a href="/info/teacher/" title="Страничка учителя" target="_self"  class="navi3">Страничка<br />учителя</a></div>
+                <div class="floatLeft header-navi-block"><a href="/info/class/" title="Классная страничка" target="_self"  class="navi4">Классная<br />страничка</a></div>
+                <div class="floatLeft header-navi-block clearRight"><a href="/diary/" title="On-line дневник" target="_self"  class="navi5">On-line<br />дневник</a></div>
+            </div>
+        </div>
+        <!-- /header bottom -->
     </div>
-
-    <div class="container">
-
-      <?php echo $this->content; ?>
-
-      <hr>
-
-      <footer>
-        <p>&copy; 2005 - 2012 by Zend Technologies Ltd. <?php echo $this->translate('All rights reserved.') ?></p>
-      </footer>
-
-    </div> <!-- /container -->
-
-  <?php echo $this->inlineScript() ?>
-  </body>
+    <!-- /header -->
+    <!-- content -->
+    <div class="content floatLeft">
+        <?php echo $this->content; ?>
+    </div>
+    <!-- /content -->
+</div>
+<?php echo $this->inlineScript() ?>
+</body>
 </html>

@@ -1,4 +1,12 @@
 <?php
+
+function d($value)
+{
+    echo '<pre>';
+    var_dump($value);
+    echo '</pre>';
+}
+
 /**
  * This makes our life easier when dealing with paths. Everything is relative
  * to the application root now.

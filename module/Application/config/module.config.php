@@ -20,6 +20,26 @@ return array(
                     ),
                 ),
             ),
+            'ckeditor_upload' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route'    => '/ckeditor/upload/',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\CkEditor',
+                        'action'     => 'upload',
+                    ),
+                ),
+            ),
+            'ckeditor_browse' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route'    => '/ckeditor/browse/',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\CkEditor',
+                        'action'     => 'browse',
+                    ),
+                ),
+            ),
         ),
     ),
     'service_manager' => array(
@@ -28,18 +48,19 @@ return array(
         ),
     ),
     'translator' => array(
-        'locale' => 'en_US',
+        'locale' => 'ru_RU',
         'translation_file_patterns' => array(
             array(
-                'type'     => 'gettext',
-                'base_dir' => __DIR__ . '/../language',
-                'pattern'  => '%s.mo',
-            ),
+                'type' => 'phparray',
+                'base_dir' => __DIR__. '/../language/',
+                'pattern' => '%s.php'
+            )
         ),
     ),
     'controllers' => array(
         'invokables' => array(
-            'Application\Controller\Index' => 'Application\Controller\IndexController'
+            'Application\Controller\Index' => 'Application\Controller\IndexController',
+            'Application\Controller\CkEditor' => 'Application\Controller\CkEditorController'
         ),
     ),
     'view_manager' => array(

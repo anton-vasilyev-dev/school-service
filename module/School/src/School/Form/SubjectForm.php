@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\School;
+namespace School\Form;
 
 class SubjectForm extends \Application\Form\EntityForm
 {
@@ -9,13 +9,35 @@ class SubjectForm extends \Application\Form\EntityForm
         parent::__construct($name);
 
         $this->add(array(
-            'name' => 'example',
+            'name' => 'title',
             'attributes' => array(
                 'type'  => 'text',
             ),
             'options' => array(
-                'label' => 'Example',
+                'label' => 'Название',
             ),
         ));
+
+        $this->add(array(
+            'name' => 'description',
+            'attributes' => array(
+                'type'  => 'textarea',
+            ),
+            'options' => array(
+                'label' => 'Описание',
+            ),
+        ));
+
+        $this->add(array(
+            'name' => 'text',
+            'attributes' => array(
+                'type'  => 'textarea',
+            ),
+            'options' => array(
+                'label' => 'Текст',
+            ),
+        ));
+
+        parent::_buttons();
     }
 }

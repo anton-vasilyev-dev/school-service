@@ -1,0 +1,50 @@
+<h3>Редактировать предмет</h3>
+<br/>
+<script>
+    $(document).ready(function(){
+        $('#cancel-button').bind('click', function () {
+            var url = $($(this).parents('form')[0]).attr('action').replace(/\/edit\/id\/[0-9]+\//, '/index/');
+            window.location = url;
+        })
+    })
+</script>
+<?php
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo '<table class="entity-form-table" border="0">';
+foreach ($form as $element) {
+    if ($element->getAttribute('type') == 'hidden') {
+        $this->formElement($element);
+    }
+}
+foreach ($form as $element) {
+    if ($element->getAttribute('type') != 'hidden'
+        && $element->getAttribute('type') != 'button'
+        && $element->getAttribute('type') != 'submit') {
+        echo '<tr>';
+        echo '<td class="entity-form-label">' . $element->getLabel() . '</td>';
+        echo '<td class="entity-form-element">' . $this->formElement($element) . '</td>';
+        echo '</tr>';
+    }
+}
+echo '<tr>';
+echo '<td class="entity-form-label"></td>';
+echo '<td class="entity-form-element">' . $this->formElement($form->get('submit')) . $this->formElement($form->get('cancel')) . '</td>';
+echo '</tr>';
+echo '</table>';
+echo $this->form()->closeTag();
+?>
+<script>
+    $(function() {
+        var config = {
+            width: 800,
+            height: 400,
+            skin : 'v2'
+        };
+
+        var ckeditor = CKEDITOR.replace('text', config);
+
+        AjexFileManager.init({returnTo: 'ckeditor', editor: ckeditor, skin: 'light'});
+    });
+</script>

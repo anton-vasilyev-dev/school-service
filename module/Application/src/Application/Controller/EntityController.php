@@ -64,19 +64,19 @@ class EntityController extends AbstractActionController
     public function addAction()
     {
         $form = $this->_getForm();
-        $form->get('submit')->setValue('Add');
+        $form->get('submit')->setValue('Добавить');
+        $form->setAttribute('action', $this->getRequest()->getRequestUri());
 
         $request = $this->getRequest();
         if ($request->isPost()) {
             $model = $this->_getMappper()->create();
             $form->setInputFilter($model->getInputFilter());
-            $form->setData($request->getPost());
-
+            $form->setData($request->getPost()->toArray());
             if ($form->isValid()) {
                 $model->exchangeArray($form->getData());
-                $this->_getMappper()->save($model);
+                $id = $this->_getMappper()->save($model);
 
-                return $this->redirect()->toRoute('edit');
+                return $this->redirect()->toUrl(str_replace('/add/', '/edit/id/' . $id . '/', $this->getRequest()->getRequestUri()));
             }
         }
 
@@ -94,23 +94,21 @@ class EntityController extends AbstractActionController
         $model = $this->_getMappper()->find($id);
 
         $form  = $this->_getForm();
+        $form->setAttribute('action', $this->getRequest()->getRequestUri());
         $form->bind($model);
-        $form->get('submit')->setAttribute('value', 'Edit');
+        $form->get('submit')->setValue('Редактировать');
 
         $request = $this->getRequest();
         if ($request->isPost()) {
             $form->setInputFilter($model->getInputFilter());
-            $form->setData($request->getPost());
+            $form->setData($request->getPost()->toArray());
 
             if ($form->isValid()) {
                 $this->_getMappper()->save($model);
-
-                return $this->redirect()->toRoute('edit');
             }
         }
 
         return array(
-            'id'   => $id,
             'form' => $form
         );
     }
@@ -124,7 +122,7 @@ class EntityController extends AbstractActionController
 
         $this->_getMappper()->delete($id);
 
-        return $this->redirect()->toRoute('index');
+        return $this->redirect()->toUrl(str_replace('/delete/id/' . $id . '/', '/index/', $this->getRequest()->getRequestUri()));
     }
 
     public function indexAction()

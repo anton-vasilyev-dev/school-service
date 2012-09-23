@@ -21,4 +21,17 @@ class Module
             ),
         );
     }
+
+    public function getServiceConfig()
+    {
+        return array(
+            'factories' => array(
+                'Account\Model\UserTable' =>  function($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $table     = new \Zend\Db\TableGateway\TableGateway('user', $dbAdapter);
+                    return $table;
+                },
+            ),
+        );
+    }
 }

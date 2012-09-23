@@ -15,9 +15,10 @@ class EntityModel implements InputFilterAwareInterface
 
     public function exchangeArray($data)
     {
+        unset($data['inputFilter']);
         foreach ($data as $key => $value) {
             if (property_exists($this, '_' . $key) && method_exists($this, 'set' . ucfirst($key))) {
-                $this->{'set' . ucfirst($key)} = $value;
+                $this->{'set' . ucfirst($key)}($value);
             }
         }
     }
@@ -25,11 +26,15 @@ class EntityModel implements InputFilterAwareInterface
     public function getArrayCopy()
     {
         $data = get_object_vars($this);
+        $publicData = array();
         foreach ($data as $key => $value) {
-            if (!property_exists($this, 'get' . ucfirst($key))) {
-                unset($data);
+            if (method_exists($this, 'get' . ucfirst(substr($key, 1, strlen($key))))) {
+                $publicData[substr($key, 1, strlen($key))] = $value;
             }
         }
+        unset($publicData['inputFilter']);
+
+        return $publicData;
     }
 
     public function setInputFilter(InputFilterInterface $inputFilter)

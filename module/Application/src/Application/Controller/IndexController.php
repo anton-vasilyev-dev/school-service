@@ -9,6 +9,13 @@ class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
-        return new ViewModel();
+        $mapper = new \Page\Model\PageMapper();
+        $mapper->setTable($this->getServiceLocator()->get('\Page\Model\PageTable'));
+
+        $page = $mapper->findByAlias('home');
+
+        return array(
+            'page' => $page
+        );
     }
 }

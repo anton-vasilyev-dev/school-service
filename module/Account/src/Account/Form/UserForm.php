@@ -14,7 +14,17 @@ class UserForm extends \Application\Form\EntityForm
                 'type'  => 'text',
             ),
             'options' => array(
-                'label' => 'Login',
+                'label' => 'Логин',
+            ),
+        ));
+
+        $this->add(array(
+            'name' => 'email',
+            'attributes' => array(
+                'type'  => 'text',
+            ),
+            'options' => array(
+                'label' => 'Электронная почта',
             ),
         ));
 
@@ -24,7 +34,7 @@ class UserForm extends \Application\Form\EntityForm
                 'type'  => 'password',
             ),
             'options' => array(
-                'label' => 'Password',
+                'label' => 'Пароль',
             ),
         ));
 
@@ -34,7 +44,17 @@ class UserForm extends \Application\Form\EntityForm
                 'type'  => 'password',
             ),
             'options' => array(
-                'label' => 'Repeat password',
+                'label' => 'Подтверждение пароля',
+            ),
+        ));
+
+        $this->add(array(
+            'name' => 'lastName',
+            'attributes' => array(
+                'type'  => 'text',
+            ),
+            'options' => array(
+                'label' => 'Фамилия',
             ),
         ));
 
@@ -44,7 +64,7 @@ class UserForm extends \Application\Form\EntityForm
                 'type'  => 'text',
             ),
             'options' => array(
-                'label' => 'First name',
+                'label' => 'Имя',
             ),
         ));
 
@@ -54,17 +74,7 @@ class UserForm extends \Application\Form\EntityForm
                 'type'  => 'text',
             ),
             'options' => array(
-                'label' => 'Middle name',
-            ),
-        ));
-
-        $this->add(array(
-            'name' => 'middleName',
-            'attributes' => array(
-                'type'  => 'text',
-            ),
-            'options' => array(
-                'label' => 'Midle name',
+                'label' => 'Отчество',
             ),
         ));
 
@@ -72,9 +82,8 @@ class UserForm extends \Application\Form\EntityForm
             'name' => 'role',
             'type' => 'Zend\Form\Element\Select',
             'options' => array(
-                'label' => 'Role',
+                'label' => 'Роль',
                 'value_options' => array(
-                    'guest'   => 'Гость',
                     'student' => 'Ученик',
                     'parent'  => 'Родитель',
                     'teacher' => 'Учитель',
@@ -82,5 +91,7 @@ class UserForm extends \Application\Form\EntityForm
                 )
             ),
         ));
+
+        parent::_buttons();
     }
 }

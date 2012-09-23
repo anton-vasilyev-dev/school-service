@@ -13,10 +13,40 @@ return array(
                         'page'      => '[0-9]+'
                     ),
                     'defaults' => array(
-                        'controller' => 'index',
+                        'controller' => 'Account\Controller\Index',
                         'action'     => 'index',
                         'id'         => 0,
                         'page'       => '1',
+                    ),
+                ),
+            ),
+            'account_login' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/account/login/',
+                    'defaults' => array(
+                        'controller' => 'Account\Controller\Auth',
+                        'action'     => 'login'
+                    ),
+                ),
+            ),
+            'account_logout' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/account/logout/',
+                    'defaults' => array(
+                        'controller' => 'Account\Controller\Auth',
+                        'action'     => 'logout'
+                    ),
+                ),
+            ),
+            'account_registration' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/account/registration/',
+                    'defaults' => array(
+                        'controller' => 'Account\Controller\Index',
+                        'action'     => 'registration'
                     ),
                 ),
             ),
@@ -33,8 +63,8 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'auth'  => 'Account\Controller\AuthController',
-            'index' => 'Account\Controller\IndexController',
+            'Account\Controller\Auth'  => 'Account\Controller\AuthController',
+            'Account\Controller\Index' => 'Account\Controller\IndexController',
         ),
     ),
     'view_manager' => array(

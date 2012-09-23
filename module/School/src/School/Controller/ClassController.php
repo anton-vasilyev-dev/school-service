@@ -1,8 +1,20 @@
 <?php
-/**
- * Created by JetBrains PhpStorm.
- * User: antonv
- * Date: 10.09.12
- * Time: 17:51
- * To change this template use File | Settings | File Templates.
- */
+
+namespace School\Controller;
+
+use School\Form;
+use School\Model;
+
+class ClassController extends \Account\Controller\EntityController
+{
+    protected $_formName = '\School\Form\ClassForm';
+
+    protected $_mapperName = '\School\Model\ClassMapper';
+
+    protected $_tableName = '\School\Model\ClassTable';
+
+    protected $_listHeaders = array(
+        'number'       => 'Номер',
+        'description'  => 'Заметки'
+    );
+}

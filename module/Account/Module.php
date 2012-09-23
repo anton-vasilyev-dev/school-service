@@ -8,7 +8,7 @@ class Module extends \Application\Module
 {
     public function getConfig()
     {
-        $config = array_merge_recursive(parent::getConfig(), include __DIR__ . '/config/module.config.php');
+        $config = include __DIR__ . '/config/module.config.php';
 
         return $config;
     }

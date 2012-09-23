@@ -140,4 +140,100 @@ class UserModel extends EntityModel
         }
         return $this->_acl->isAllowed($role, $resource, $permission);
     }
+
+    public function getInputFilter()
+    {
+        if (!$this->_inputFilter) {
+            $inputFilter = new \Zend\InputFilter\InputFilter();
+            $factory     = new \Zend\InputFilter\Factory();
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'id',
+                'required' => false,
+                'filters'  => array(
+                ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'login',
+                'required' => true,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'password',
+                'required' => true,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'firstName',
+                'required' => true,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'lastName',
+                'required' => true,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'middleName',
+                'required' => true,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'role',
+                'required' => true,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'email',
+                'required' => true,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                ),
+            )));
+
+            $this->_inputFilter = $inputFilter;
+        }
+
+        return $this->_inputFilter;
+    }
 }

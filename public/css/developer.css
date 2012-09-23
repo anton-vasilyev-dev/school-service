@@ -1,0 +1,92 @@
+.entity-form label {
+    width: 100%;
+    display: block;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.entity-form td {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.entity-form td.entity-form-label {
+    vertical-align: top;
+    width: 150px;
+}
+
+.entity-form-element ul {
+    list-style: none;
+    color: red;
+    font-weight: bold;
+    font-size: 10px;
+    margin-bottom: 4px;
+}
+
+.entity-form input[type=text], .entity-form input[type=password] {
+    width: 400px;
+    border: 1px solid #9B2D28;
+    height: 20px;
+    border-radius: 3px;
+    padding: 0 4px;
+}
+
+.entity-form select {
+    width: 410px;
+    border: 1px solid #9B2D28;
+    height: 20px;
+    border-radius: 3px;
+    padding: 0 4px;
+}
+
+.entity-form textarea {
+    width: 402px;
+    height: 200px;
+    border: 1px solid #9B2D28;
+    border-radius: 3px;
+    padding: 0 4px;
+}
+
+#submit-button, #cancel-button {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.entity-table {
+    width: 100%;
+}
+
+.entity-table th, .entity-table td {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.entity-table th {
+    font-weight: bold;
+}
+
+.auth-form-label {
+    width: 75px !important;
+}
+
+.auth-form-element input {
+    width: 200px !important;
+    border: 1px solid #9B2D28;
+    height: 20px;
+    border-radius: 3px;
+    padding: 0 4px;
+}
+
+.auth-form-table {
+    width: 275px;
+    margin-left: 350px;
+    padding: 5px;
+}
+
+.registration-form {
+    margin-left: 200px;
+}

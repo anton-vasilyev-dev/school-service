@@ -1,0 +1,30 @@
+<h3>Список предметов</h3>
+<br/>
+<table border="1" class="entity-table" cellpadding="0" cellspacing="0">
+    <tr>
+    <?php foreach ($headers as $header): ?>
+    <th><?php echo $header ?></th>
+    <?php endforeach; ?>
+    <th><?php echo $this->translate('Действия') ?></th>
+    </tr>
+    <?php if (count($paginator)): ?>
+    <?php foreach ($paginator as $item): ?>
+        <tr>
+            <?php foreach ($headers as $key => $header): ?>
+            <td><?php echo $item[$key] ?></td>
+            <?php endforeach; ?>
+        <td>
+            <a href="<?php echo $this->url(null, array('action' => 'edit', 'id' => $item['id'])) ?>"><?php echo $this->translate('Редактировать') ?></a>&nbsp;|&nbsp;
+            <a href="<?php echo $this->url(null, array('action' => 'delete', 'id' => $item['id'])) ?>"><?php echo $this->translate('Удалить') ?></a>
+        </td>
+        </tr>
+        <?php endforeach; ?>
+    <?php else: ?>
+    <td colspan="<?php echo count($headers) + 1 ?>"><?php echo $this->translate('Нет данных') ?></td>
+    <?php endif; ?>
+</table>
+<br/>
+<?php echo $this->paginationControl($paginator, 'sliding', 'pagination') ?>
+
+<br/>
+<a href="<?php echo $this->url(null, array('action' => 'add')) ?>"><?php echo $this->translate('Добавить') ?></a>

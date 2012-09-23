@@ -1,20 +1,20 @@
 <?php if ($this->pageCount): ?>
+<div class="floatLeft" style="margin-right: 10px;"><b><?php echo $this->translate('Страницы') ?>:</b></div>
 <div class="paginationControl">
     <!-- Previous page link -->
     <?php if (isset($this->previous)): ?>
     <a href="<?php echo $this->url(null, array('page' => $this->previous)); ?>">
-        < Previous
+        < Предыдущая
     </a> |
     <?php else: ?>
-    <span class="disabled">< Previous</span> |
+    <span class="disabled">< Предыдущая</span> |
     <?php endif; ?>
 
     <!-- Numbered page links -->
     <?php foreach ($this->pagesInRange as $page): ?>
     <?php if ($page != $this->current): ?>
         <a href="<?php echo $this->url(null, array('page' => $page)); ?>">
-            <?php echo $page; ?>
-        </a> |
+            <?php echo $page; ?></a> |
         <?php else: ?>
         <?php echo $page; ?> |
         <?php endif; ?>
@@ -23,10 +23,10 @@
     <!-- Next page link -->
     <?php if (isset($this->next)): ?>
     <a href="<?php echo $this->url(null, array('page' => $this->next)); ?>">
-        Next >
+        Следующая >
     </a>
     <?php else: ?>
-    <span class="disabled">Next ></span>
+    <span class="disabled">Следующая ></span>
     <?php endif; ?>
 </div>
 <?php endif; ?>

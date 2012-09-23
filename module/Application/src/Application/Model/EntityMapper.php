@@ -34,25 +34,36 @@ class EntityMapper
     {
         $data = $model->getArrayCopy();
 
-        if (null === ($id = $model->getId())) {
+        if (null == ($id = $model->getId())) {
             unset($data['id']);
             $this->getTable()->insert($data);
+            return $this->getTable()->getLastInsertValue();
         } else {
             $this->getTable()->update($data, array('id = ?' => $id));
+            return $id;
         }
     }
 
     public function find($id)
     {
-        $result = $this->getDbTable()->find($id);
+        $result = $this->getTable()->select(array('id' => $id));
         if (0 == count($result)) {
             return;
         }
         $row = $result->current();
+
+        /**
+         * @var EntityModel
+         */
         $model = new $this->_modelName();
-        $model->exchangeArray($row->toArray());
+        $model->exchangeArray($row->getArrayCopy());
+
+        return $model;
     }
 
+    /**
+     * @return EntityModel
+     */
     public function create()
     {
         return new $this->_modelName();
@@ -72,7 +83,7 @@ class EntityMapper
 
     public function delete($id)
     {
-        $this->getDbTable()->delete(array(
+        $this->getTable()->delete(array(
             'id' => $id
         ));
     }

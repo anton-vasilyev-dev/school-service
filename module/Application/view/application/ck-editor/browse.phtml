@@ -1,0 +1,27 @@
+<?php 
+    $this->headLink()->appendStylesheet('/modules/upload-files/views/frontend/CKEditor/styles/browse.css');
+    $this->headScript()->appendFile('/modules/upload-files/views/frontend/CKEditor/scripts/browse.js');
+?>
+<div class="items">
+<?php
+    if (empty($this->files)) {
+        echo "<br /><center>Файлов нет.</center>";
+    }
+    foreach ($this->files as $file) {
+?>
+<div class="item">
+<img src="/modules/upload-files/views/frontend/CKEditor/images/file.gif" border="0" width="64" height="64"/><br />
+<div class="name" file="<?php echo $this->path . $file; ?>"><?php echo $file; ?></div>
+</div>
+<?php 
+    } // foreach
+?>
+</div>
+
+<?php 
+    echo $this->paginationControl($paginator, 'sliding', 'pagination-ckeditor', array('params' => $request));
+?>
+
+<div class="buttons">
+    <button id="close" class="btn"><span><span>Закрыть</span></span></button>
+</div>

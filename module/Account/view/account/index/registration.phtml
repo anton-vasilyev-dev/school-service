@@ -1,0 +1,29 @@
+<h3>Регистрация</h3>
+<br/>
+<?php
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo '<table class="entity-form-table" border="0">';
+foreach ($form as $element) {
+    if ($element->getAttribute('type') == 'hidden') {
+        $this->formElement($element);
+    }
+}
+foreach ($form as $element) {
+    if ($element->getAttribute('type') != 'hidden'
+     && $element->getAttribute('type') != 'button'
+     && $element->getAttribute('type') != 'submit') {
+        echo '<tr>';
+        echo '<td class="entity-form-label">' . $element->getLabel() . '</td>';
+        echo '<td class="entity-form-element">' . $this->formElement($element) . '</td>';
+        echo '</tr>';
+    }
+}
+echo '<tr>';
+echo '<td class="entity-form-label"></td>';
+echo '<td class="entity-form-element">' . $this->formElement($form->get('submit')) . '</td>';
+echo '</tr>';
+echo '</table>';
+echo $this->form()->closeTag();
+?>

@@ -1,1 +1,123 @@
-<?php echo $this->translate('Hello, World!') ?>
+<!-- content top -->
+<div class="floatLeft fullWidth content-top">
+    <div class="floatLeft content-menu">
+        <div class="floatLeft content-menu-links">
+            <div class="floatLeft fullWidth content-menu-links-line">
+                <div class="floatLeft content-menu-links-block" slides="sl1"><span class="current">Экскурсия по<br />школе</span></div>
+            </div>
+            <div class="floatLeft fullWidth content-menu-links-line">
+                <div class="floatLeft content-menu-links-block" slides="sl2"><span>Наши<br />учителя</span></div>
+            </div>
+            <div class="floatLeft fullWidth content-menu-links-line">
+                <div class="floatLeft content-menu-links-block" slides="sl3"><span>Страницы<br />истории</span></div>
+            </div>
+            <div class="floatLeft fullWidth content-menu-links-line">
+                <div class="floatLeft content-menu-links-block" slides="sl4"><span>Наши<br />выпускники</span></div>
+            </div>
+        </div>
+        <div class="floatLeft content-menu-slideshow">
+            <div class="floatLeft fullWidth slideshow-line" id="sl1">
+                <div class="floatLeft slideshow-block"><img src="/images/person1.jpg" alt="" /></div>
+                <div class="floatLeft slideshow-block"><img src="/images/person2.jpg" alt="" /></div>
+                <div class="floatLeft slideshow-block"><img src="/images/person3.jpg" alt="" /></div>
+                <div class="floatLeft slideshow-block"><img src="/images/person4.jpg" alt="" /></div>
+            </div>
+            <div class="floatLeft fullWidth slideshow-line" id="sl2">
+                <div class="floatLeft slideshow-block"><img src="/images/person2.jpg" alt="" /></div>
+                <div class="floatLeft slideshow-block"><img src="/images/person2.jpg" alt="" /></div>
+                <div class="floatLeft slideshow-block"><img src="/images/person3.jpg" alt="" /></div>
+                <div class="floatLeft slideshow-block"><img src="/images/person4.jpg" alt="" /></div>
+            </div>
+            <div class="floatLeft fullWidth slideshow-line" id="sl3">
+                <div class="floatLeft slideshow-block"><img src="/images/person3.jpg" alt="" /></div>
+                <div class="floatLeft slideshow-block"><img src="/images/person2.jpg" alt="" /></div>
+                <div class="floatLeft slideshow-block"><img src="/images/person3.jpg" alt="" /></div>
+                <div class="floatLeft slideshow-block"><img src="/images/person4.jpg" alt="" /></div>
+            </div>
+            <div class="floatLeft fullWidth slideshow-line" id="sl4">
+                <div class="floatLeft slideshow-block"><img src="/images/person4.jpg" alt="" /></div>
+                <div class="floatLeft slideshow-block"><img src="/images/person2.jpg" alt="" /></div>
+                <div class="floatLeft slideshow-block"><img src="/images/person3.jpg" alt="" /></div>
+                <div class="floatLeft slideshow-block"><img src="/images/person4.jpg" alt="" /></div>
+            </div>
+        </div>
+    </div>
+    <div class="floatRight content-links">
+        <div class="floatLeft fullWidth content-links-header">О школе...</div>
+        <div class="floatLeft fullWidth content-links-line">
+            <a href="/info/about/" title="Общие сведенья о школе" target="_self">Общие сведенья о школе</a>
+        </div>
+        <div class="floatLeft fullWidth content-links-line">
+            <a href="/info/law/" title="Нормативно - правовое обеспечение" target="_self">Нормативно - правовое обеспечение</a>
+        </div>
+        <div class="floatLeft fullWidth content-links-line">
+            <a href="/info/documents/" title="Актуальные документы" target="_self">Актуальные документы</a>
+        </div>
+        <div class="floatLeft fullWidth content-links-line">
+            <a href="/info/public/" title="Публичный доклад" target="_self">Публичный доклад</a>
+        </div>
+        <div class="floatLeft fullWidth content-links-line">
+            <a href="/info/extra-education/" title="Дополнительное образование" target="_self">Дополнительное образование</a>
+        </div>
+        <div class="floatLeft fullWidth content-links-line">
+            <a href="/info/out-class/" title="Внеклассная работа" target="_self">Внеклассная работа</a>
+        </div>
+        <div class="floatLeft fullWidth content-links-line">
+            <a href="/info/ege-gia/" title="Всё о ЕГЭ и ГИА" target="_self">Всё о ЕГЭ и ГИА</a>
+        </div>
+        <div class="floatLeft fullWidth content-links-line">
+            <a href="/info/news/" title="Школьные новости" target="_self">Школьные новости</a>
+        </div>
+    </div>
+</div>
+<!-- /content top -->
+<!-- content navi -->
+<div class="floatLeft fullWidth content-navi">
+    <a href="/info/for-students/" title="Для учащихся" target="_self">Для учащихся</a>
+    <a href="/info/for-parents/" title="Для родителей" target="_self">Для родителей</a>
+    <a href="/info/for-teachers/" title="Для учителей" target="_self">Для учителей</a>
+    <a href="/info/photo/" title="Фотогалерея" target="_self">Фотогалерея</a>
+    <a href="/info/links/" title="Полезные ссылки" target="_self" class="clearRight">Полезные ссылки</a>
+</div>
+<!-- /content navi -->
+<!-- content main -->
+<div class="floatLeft content-main">
+    <?php if ($page != null): ?>
+    <?php echo $page->getText() ?>
+    <?php endif; ?>
+</div>
+<!-- /content main -->
+
+<script>
+    $(document).ready(function() {
+        /*var lns = $('.slideshow-line');
+        for (var i = 0; i < lns.length; i++) {
+            var sls = $(lns[i]).find('.slideshow-block');
+            for (var j = 0; j < sls.length; j++) {
+                $(sls[j]).css('margin-top', '-' + 314*j + 'px');
+            }
+        }*/
+
+        var index = 1;
+        var interval = setInterval(function () {
+            var slides = $('.content-menu-links-block span.current').parent().attr('slides');
+            $('#' + slides + ' .slideshow-block').fadeOut();
+            $($('#' + slides + ' .slideshow-block')[index]).fadeIn();
+            index = (index + 1)%$('#' + slides + ' .slideshow-block').length;
+        }, 5000)
+
+        $('.content-menu-links-block').bind('click', function () {
+            $('.content-menu-links-block span').removeClass('current');
+            $($(this).find('span')[0]).addClass('current');
+            $('.slideshow-line').hide();
+            $('#' + $(this).attr('slides')).show();
+            clearInterval(interval);
+            interval = setInterval(function () {
+                var slides = $('.content-menu-links-block span.current').parent().attr('slides');
+                $('#' + slides + ' .slideshow-block').fadeOut();
+                $($('#' + slides + ' .slideshow-block')[index]).fadeIn();
+                index = (index + 1)%$('#' + slides + ' .slideshow-block').length;
+            }, 5000)
+        })
+    });
+</script>
