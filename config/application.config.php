@@ -4,7 +4,9 @@ return array(
         'Application',
         'Account',
         'Page',
-        'School'
+        'School',
+        'Menu',
+        'Wall',
     ),
     'module_listener_options' => array(
         'config_glob_paths'    => array(
