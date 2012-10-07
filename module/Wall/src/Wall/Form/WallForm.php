@@ -9,6 +9,16 @@ class WallForm extends \Application\Form\EntityForm
         parent::__construct($name);
 
         $this->add(array(
+            'name' => 'name',
+            'attributes' => array(
+                'type'  => 'text',
+            ),
+            'options' => array(
+                'label' => 'Имя',
+            ),
+        ));
+
+        $this->add(array(
             'name' => 'message',
             'attributes' => array(
                 'type'  => 'textarea',

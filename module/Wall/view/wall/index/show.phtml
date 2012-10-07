@@ -1,0 +1,12 @@
+<h3>Школьная стена</h3>
+<div class="floatLeft fullWidth content-personal" style="text-align: left;">
+        <?php if (count($paginator)): ?>
+          <?php foreach ($paginator as $item): ?>
+            <?php var_dump($item) ?>
+          <?php endforeach; ?>
+        <?php else: ?>
+        <center><?php echo $this->translate('Сообщений не оставлено') ?></center>
+        <?php endif; ?>
+    <br/>
+    <?php echo $this->paginationControl($paginator, 'sliding', 'pagination') ?>
+</div>
