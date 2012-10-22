@@ -3,9 +3,9 @@ return array(
     'modules' => array(
         'Application',
         'Account',
+        'Menu',
         'Page',
         'School',
-        'Menu',
         'Wall',
     ),
     'module_listener_options' => array(

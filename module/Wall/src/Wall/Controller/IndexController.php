@@ -14,6 +14,7 @@ class IndexController extends \Account\Controller\EntityController
     protected $_tableName = '\Wall\Model\WallTable';
 
     protected $_listHeaders = array(
+        'name'        => 'Имя',
         'message'     => 'Сообщение',
         'dateTime'    => 'Дата и время',
         'image'       => 'Картинка',

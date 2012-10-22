@@ -22,13 +22,14 @@
 
 </head>
 <body>
+<div class="floatLeft fullWidth main-padder">
 <div class="main">
     <!-- header -->
     <div class="floatLeft fullWidth header">
         <!-- header top -->
         <div class="floatLeft fullWidth header-top">
             <div class="floatLeft header-logo"><img src="/images/logo.png" alt="" /></div>
-            <div class="floatRight header-login">
+            <div class="floatRight header-login br15">
                 <form action="" class="floatLeft fullWidth">
                     <div class="floatLeft fullWidth header-login-line"><span>Вход в систему:</span></div>
                     <div class="floatLeft fullWidth header-login-line"><input type="text" placeholder="логин"  name="login"/></div>
@@ -38,24 +39,44 @@
             </div>
         </div>
         <!-- /header top -->
+
+        <?php $menu = isset($GLOBALS['menu']) ? $GLOBALS['menu'] : array() ?>
+
         <!-- header bottom -->
         <div class="floatLeft fullWidth header-bottom">
             <div class="floatLeft header-navi">
-                <div class="floatLeft header-navi-block"><a href="/" title="Главная страница" target="_self" class="navi1">Главная<br />страница</a></div>
-                <div class="floatLeft header-navi-block"><a href="/info/director/" title="Слово директору" target="_self"  class="navi2">Слово<br />директору</a></div>
-                <div class="floatLeft header-navi-block"><a href="/info/teacher/" title="Страничка учителя" target="_self"  class="navi3">Страничка<br />учителя</a></div>
-                <div class="floatLeft header-navi-block"><a href="/info/class/" title="Классная страничка" target="_self"  class="navi4">Классная<br />страничка</a></div>
-                <div class="floatLeft header-navi-block clearRight"><a href="/info/wall/" title="Школьная стена" target="_self"  class="navi5">Школьная<br />стена</a></div>
+                <?php $index = 0 ?>
+                <?php foreach ($menu as $sort => $item) { ?>
+                <div class="floatLeft header-navi-block br5 <?php echo $index == count($menu) - 1 ? 'clearRight': ''; ?>">
+                    <a href="<?php echo $item->getHref() ?>" title="<?php echo $item->getTitle() ?>" target="_self"  class="navi navi<?php echo $item->getSort() ?>"><?php echo $item->getTitle() ?></a>
+                    <?php $subItems = $item->getSubItems() ?>
+                    <?php if (count($subItems) > 0) { ?>
+                    <div class="header-navi-menu">
+                        <div class="floatLeft header-navi-menu-inner br5">
+                            <ul>
+                                <?php foreach ($subItems as $subItem) { ?>
+                                <li>
+                                    <a href="<?php echo $subItem->getHref() ?>" title="<?php echo $subItem->getTitle() ?>" target="_self"><?php echo $subItem->getTitle() ?></a>
+                                </li>
+                                <?php } ?>
+                            </ul>
+                        </div>
+                    </div>
+                    <?php } ?>
+                </div>
+                <?php $index++ ?>
+                <?php } ?>
             </div>
         </div>
         <!-- /header bottom -->
     </div>
     <!-- /header -->
     <!-- content -->
-    <div class="content floatLeft">
+    <div class="content floatLeft br5">
         <?php echo $this->content; ?>
     </div>
     <!-- /content -->
+</div>
 </div>
 <?php echo $this->inlineScript() ?>
 </body>

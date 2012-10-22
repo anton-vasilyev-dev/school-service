@@ -7,6 +7,17 @@ use Zend\View\Model\ViewModel;
 
 class IndexController extends AbstractActionController
 {
+    public function onDispatch(\Zend\Mvc\MvcEvent $e)
+    {
+        $this->_menu();
+        parent::onDispatch($e);
+    }
+
+    protected function _menu()
+    {
+        $GLOBALS['menu'] = $this->getServiceLocator()->get('\Menu\Model\MenuMapper')->menu('any');
+    }
+
     public function indexAction()
     {
         $mapper = new \Page\Model\PageMapper();
@@ -14,8 +25,16 @@ class IndexController extends AbstractActionController
 
         $page = $mapper->findByAlias('home');
 
+        $menu = $this->getServiceLocator()->get('\Menu\Model\MenuMapper')->menu('home');
+
         return array(
-            'page' => $page
+            'page' => $page,
+            'menu' => $menu
         );
+    }
+
+    public function contentAction()
+    {
+        return array();
     }
 }

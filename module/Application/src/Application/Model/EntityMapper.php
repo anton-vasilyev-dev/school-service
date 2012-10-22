@@ -6,6 +6,9 @@ use Exception;
 
 class EntityMapper
 {
+    /**
+     * @var \Zend\Db\TableGateway\TableGateway
+     */
     protected $_table;
 
     protected $_modelName;

@@ -6,3 +6,5 @@ CREATE TABLE `menu` (
   href VARCHAR(1024) NOT NULL,
   PRIMARY KEY (id)
 ) ENGINE = INNODB CHARSET = utf8;
+
+ALTER TABLE menuItem ADD `type` ENUM ('any', 'home');

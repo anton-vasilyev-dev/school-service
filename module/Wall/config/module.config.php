@@ -6,7 +6,7 @@ return array(
             'wall_entity' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/wall/[:action/][page/:page/][id/:id/]',
+                    'route'    => '/wall-manage/[:action/][page/:page/][id/:id/]',
                     'constraints' => array(
                         'action'    => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id'        => '[0-9]+',
@@ -16,6 +16,22 @@ return array(
                         'controller' => 'Wall\Controller\Index',
                         'action'     => 'index',
                         'id'         => 0,
+                        'page'       => '1',
+                    ),
+                ),
+            ),
+            'wall' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/wall/[page/:page/]',
+                    'constraints' => array(
+                        'action'    => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'        => '[0-9]+',
+                        'page'      => '[0-9]+'
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Wall\Controller\Index',
+                        'action'     => 'show',
                         'page'       => '1',
                     ),
                 ),

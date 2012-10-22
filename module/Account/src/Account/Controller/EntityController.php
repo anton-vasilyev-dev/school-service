@@ -22,6 +22,11 @@ class EntityController extends \Application\Controller\EntityController
         $this->_resourceName = 'account\index';
     }
 
+    protected function _menu()
+    {
+        $GLOBALS['menu'] = $this->getServiceLocator()->get('\Menu\Model\MenuMapper')->menu('any');
+    }
+
     public function addAction()
     {
         if (!$this->_user->isAllowed($this->_resourceName, 'add')) {

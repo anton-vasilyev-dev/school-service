@@ -32,9 +32,14 @@ class Module extends \Application\Module
             'factories' => array(
                 'Menu\Model\MenuTable' =>  function($sm) {
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
-                    $table     = new \Zend\Db\TableGateway\TableGateway('menu', $dbAdapter);
+                    $table     = new \Zend\Db\TableGateway\TableGateway('menuItem', $dbAdapter);
                     return $table;
                 },
+                'Menu\Model\MenuMapper' => function ($sm) {
+                    $mapper = new Model\MenuMapper();
+                    $mapper->setTable($sm->get('Menu\Model\MenuTable'));
+                    return $mapper;
+                }
             ),
         );
     }

@@ -3,19 +3,19 @@
     <div class="floatLeft content-menu">
         <div class="floatLeft content-menu-links">
             <div class="floatLeft fullWidth content-menu-links-line">
-                <div class="floatLeft content-menu-links-block" slides="sl1"><span class="current">Экскурсия по<br />школе</span></div>
+                <div class="floatLeft content-menu-links-block" slides="sl1"><span class="current br5">Экскурсия по<br />школе</span></div>
             </div>
             <div class="floatLeft fullWidth content-menu-links-line">
-                <div class="floatLeft content-menu-links-block" slides="sl2"><span>Наши<br />учителя</span></div>
+                <div class="floatLeft content-menu-links-block" slides="sl2"><span class="br5">Наши<br />учителя</span></div>
             </div>
             <div class="floatLeft fullWidth content-menu-links-line">
-                <div class="floatLeft content-menu-links-block" slides="sl3"><span>Страницы<br />истории</span></div>
+                <div class="floatLeft content-menu-links-block" slides="sl3"><span class="br5">Страницы<br />истории</span></div>
             </div>
             <div class="floatLeft fullWidth content-menu-links-line">
-                <div class="floatLeft content-menu-links-block" slides="sl4"><span>Наши<br />выпускники</span></div>
+                <div class="floatLeft content-menu-links-block" slides="sl4"><span class="br5">Наши<br />выпускники</span></div>
             </div>
         </div>
-        <div class="floatLeft content-menu-slideshow">
+        <div class="floatLeft content-menu-slideshow  br10">
             <div class="floatLeft fullWidth slideshow-line" id="sl1">
                 <?php $path = $_SERVER['DOCUMENT_ROOT'] . '/images/exhibition/' ?>
                 <?php $files = scandir($path) ?>
@@ -54,7 +54,7 @@
             </div>
         </div>
     </div>
-    <div class="floatRight content-links">
+    <div class="floatRight content-links  br5">
         <div class="floatLeft fullWidth content-links-header">О школе...</div>
         <div class="floatLeft fullWidth content-links-line">
             <a href="/info/about/" title="Общие сведенья о школе" target="_self">Общие сведения о школе</a>
@@ -85,15 +85,33 @@
 <!-- /content top -->
 <!-- content navi -->
 <div class="floatLeft fullWidth content-navi">
-    <a href="/info/for-students/" title="Для учащихся" target="_self">Для учащихся</a>
-    <a href="/info/for-parents/" title="Для родителей" target="_self">Для родителей</a>
-    <a href="/info/for-teachers/" title="Для учителей" target="_self">Для учителей</a>
-    <a href="/info/photo/" title="Фотогалерея" target="_self">Фотогалерея</a>
-    <a href="/info/links/" title="Полезные ссылки" target="_self" class="clearRight">Полезные ссылки</a>
+
+    <?php $index = 0 ?>
+    <?php foreach ($menu as $item) { ?>
+    <div class="content-navi-block floatLeft <?php echo $index == count($menu) - 1 ? 'clearRight': ''; ?>">
+        <a href="<?php echo $item->getHref() ?>" title="<?php echo $item->getTitle() ?>" target="_self"  class="br5 main"><?php echo $item->getTitle() ?></a>
+        <?php $subItems = $item->getSubItems() ?>
+        <?php if (count($subItems) > 0) { ?>
+        <div class="content-navi-menu">
+            <div class="floatLeft content-navi-menu-inner br5">
+                <ul>
+                    <?php foreach ($subItems as $subItem) { ?>
+                    <li>
+                        <a href="<?php echo $subItem->getHref() ?>" title="<?php echo $subItem->getTitle() ?>" target="_self"><?php echo $subItem->getTitle() ?></a>
+                    </li>
+                    <?php } ?>
+                </ul>
+            </div>
+        </div>
+        <?php } ?>
+    </div>
+    <?php $index++ ?>
+    <?php } ?>
+
 </div>
 <!-- /content navi -->
 <!-- content main -->
-<div class="floatLeft content-main">
+<div class="floatLeft content-main br5">
     <?php if ($page != null): ?>
     <?php echo $page->getText() ?>
     <?php endif; ?>

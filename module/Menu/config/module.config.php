@@ -6,7 +6,7 @@ return array(
             'menu_entity' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/menu/[:action/][page/:page/][id/:id/]',
+                    'route'    => '/menu-manage/[:action/][page/:page/][id/:id/]',
                     'constraints' => array(
                         'action'    => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id'        => '[0-9]+',

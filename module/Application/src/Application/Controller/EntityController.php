@@ -31,6 +31,17 @@ class EntityController extends AbstractActionController
      */
     protected $_form;
 
+    public function onDispatch(\Zend\Mvc\MvcEvent $e)
+    {
+        $this->_menu();
+        parent::onDispatch($e);
+    }
+
+    protected function _menu()
+    {
+        $GLOBALS['menu'] = $this->getServiceLocator()->get('\Menu\Model\MenuMapper')->menu('any');
+    }
+
     /**
      * @return \Application\Model\EntityMapper
      */
@@ -74,6 +85,7 @@ class EntityController extends AbstractActionController
             $form->setData($request->getPost()->toArray());
             if ($form->isValid()) {
                 $model->exchangeArray($form->getData());
+
                 $id = $this->_getMappper()->save($model);
 
                 return $this->redirect()->toUrl(str_replace('/add/', '/edit/id/' . $id . '/', $this->getRequest()->getRequestUri()));

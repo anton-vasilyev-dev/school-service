@@ -90,3 +90,11 @@
 .registration-form {
     margin-left: 200px;
 }
+
+.header-navi-menu {
+    z-index: 10000;
+}
+
+.header-navi-menu ul li a:hover {
+    color: #400000 !important;
+}

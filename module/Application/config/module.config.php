@@ -40,6 +40,16 @@ return array(
                     ),
                 ),
             ),
+            'content-manage' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route'    => '/content-manage/',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Index',
+                        'action'     => 'content',
+                    ),
+                ),
+            ),
         ),
     ),
     'service_manager' => array(

@@ -9,17 +9,38 @@ class MenuForm extends \Application\Form\EntityForm
         parent::__construct($name);
 
         $this->add(array(
+            'name' => 'type',
+            'type' => 'Zend\Form\Element\Select',
+            'options' => array(
+                'label' => 'Расположение',
+                'value_options' => array(
+                    'any'   => 'Для любой страницы',
+                    'home'  => 'Для главной страницы',
+                )
+            ),
+        ));
+
+        $this->add(array(
+            'name' => 'parentId',
+            'type' => 'Zend\Form\Element\Select',
+            'options' => array(
+                'label' => 'Основной пункт меню',
+                'value_options' => array('0' => 'Отсуствует'),
+            ),
+        ));
+
+        $this->add(array(
             'name' => 'title',
             'attributes' => array(
                 'type'  => 'text',
             ),
             'options' => array(
-                'label' => 'Заголовок',
+                'label' => 'Название',
             ),
         ));
 
         $this->add(array(
-            'name' => 'alias',
+            'name' => 'href',
             'attributes' => array(
                 'type'  => 'text',
             ),
@@ -29,35 +50,14 @@ class MenuForm extends \Application\Form\EntityForm
         ));
 
         $this->add(array(
-            'name' => 'description',
+            'name' => 'sort',
             'attributes' => array(
-                'type'  => 'keywords',
+                'type'  => 'text',
             ),
             'options' => array(
-                'label' => 'Ключевые слова',
+                'label' => 'Сортировка',
             ),
         ));
-
-        $this->add(array(
-            'name' => 'description',
-            'attributes' => array(
-                'type'  => 'textarea',
-            ),
-            'options' => array(
-                'label' => 'Описание',
-            ),
-        ));
-
-        $this->add(array(
-            'name' => 'text',
-            'attributes' => array(
-                'type'  => 'textarea'
-            ),
-            'options' => array(
-                'label' => 'Текст',
-            ),
-        ));
-
 
         parent::_buttons();
     }
