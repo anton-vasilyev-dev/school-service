@@ -95,8 +95,8 @@ border-radius: 10px;
 .slideshow-block, .slideshow-block img {height: 314px;width: 532px;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;}
 /* content links */
 .content-links {width: 200px;border: 1px solid #fff;background: #ffcc99;padding: 10px 27px;}
-.content-links-header {cursor: default;font-size: 18px;font-weight: bold;padding-bottom: 10px;text-align: center;}
-.content-links-line {padding-bottom: 10px;}
+.content-links-header {cursor: default;font-size: 18px;font-weight: bold;padding-bottom: 5px;text-align: center;}
+.content-links-line {padding-bottom: 3px;}
 .content-links-line a, .content-links-line a:active, .content-links-line a:visited {text-decoration: none;font-style: italic;font-size: 15px;}
 .content-links-line a:hover {color: #400000;}
 /* content navi */
