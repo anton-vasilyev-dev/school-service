@@ -1,12 +1,50 @@
 <h3>Школьная стена</h3>
-<div class="floatLeft fullWidth content-personal" style="text-align: left;">
+<div class="floatLeft fullWidth content-personal" style="text-align: left; padding-bottom: 15px;">
         <?php if (count($paginator)): ?>
           <?php foreach ($paginator as $item): ?>
-            <?php var_dump($item) ?>
+          <div style="border-bottom: gray dotted 1px; padding-bottom: 5px;">
+            <div style="font-size: 14px; font-weight: bold;"><?php echo htmlspecialchars($item['name']) ?></div>
+            <div style="font-size: 11px;">Автор: <?php echo htmlspecialchars($item['user']) ?></div>
+            <div style="font-size: 11px;">Оставлено: <?php echo date('d.m.Y H:i:s', strtotime($item['dateTime'])) ?></div>
+            <div style="font-size: 13px; margin-top: 5px;"><?php echo htmlspecialchars($item['message']) ?></div>
+          </div>
           <?php endforeach; ?>
         <?php else: ?>
         <center><?php echo $this->translate('Сообщений не оставлено') ?></center>
         <?php endif; ?>
     <br/>
     <?php echo $this->paginationControl($paginator, 'sliding', 'pagination') ?>
+</div>
+
+<div>
+<h2 style="padding-bottom: 10px;">Добавить новое сообщение</h2>
+<?php echo $message != '' ? '<div style="color: red; font-weight: bold; margin-bottom: 8px;">' . $message . '</div>' : '' ?>
+<?php echo $messageGood != '' ? '<div style="color: green; font-weight: bold; margin-bottom: 8px;">' . $messageGood . '</div>' : '' ?>
+<?php
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo '<table class="entity-form-table" border="0">';
+foreach ($form as $element) {
+    if ($element->getAttribute('type') == 'hidden') {
+        $this->formElement($element);
+    }
+}
+foreach ($form as $element) {
+    if ($element->getAttribute('type') != 'hidden'
+        && $element->getAttribute('type') != 'button'
+        && $element->getAttribute('type') != 'submit') {
+        echo '<tr>';
+        echo '<td class="entity-form-label">' . $element->getLabel() . '</td>';
+        echo '<td class="entity-form-element">' . $this->formElement($element) . '</td>';
+        echo '</tr>';
+    }
+}
+echo '<tr>';
+echo '<td class="entity-form-label"></td>';
+echo '<td class="entity-form-element">' . $this->formElement($form->get('submit')) . '</td>';
+echo '</tr>';
+echo '</table>';
+echo $this->form()->closeTag();
+?>
 </div>

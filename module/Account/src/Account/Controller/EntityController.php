@@ -27,12 +27,12 @@ class EntityController extends \Application\Controller\EntityController
         $GLOBALS['menu'] = $this->getServiceLocator()->get('\Menu\Model\MenuMapper')->menu('any');
     }
 
-    public function addAction()
+    public function addAction($return = false)
     {
         if (!$this->_user->isAllowed($this->_resourceName, 'add')) {
             throw new Exception('Permission denied.');
         }
-        return parent::addAction();
+        return parent::addAction($return);
     }
 
     public function editAction()

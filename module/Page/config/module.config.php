@@ -26,7 +26,7 @@ return array(
                     'route'    => '/info/[:alias/]',
                     'constraints' => array(
                         'action'    => 'show',
-                        'alias'     => '[a-zA-Z0-9_-]*'
+                        'alias'     => '[/a-zA-Z0-9_-]*'
                     ),
                     'defaults' => array(
                         'controller' => 'Page\Controller\Index',

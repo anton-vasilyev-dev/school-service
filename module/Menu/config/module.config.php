@@ -33,7 +33,7 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Menu\Controller\Index' => 'Menu\Controller\IndexController',
+            'Menu\Controller\Index' => 'Menu\Controller\IssueController',
         ),
     ),
     'view_manager' => array(

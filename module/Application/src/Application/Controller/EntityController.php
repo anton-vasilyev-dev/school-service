@@ -72,7 +72,7 @@ class EntityController extends AbstractActionController
         return $this->_listHeaders;
     }
 
-    public function addAction()
+    public function addAction($return = false)
     {
         $form = $this->_getForm();
         $form->get('submit')->setValue('Добавить');
@@ -88,7 +88,14 @@ class EntityController extends AbstractActionController
 
                 $id = $this->_getMappper()->save($model);
 
-                return $this->redirect()->toUrl(str_replace('/add/', '/edit/id/' . $id . '/', $this->getRequest()->getRequestUri()));
+                if (!$return) {
+                    return $this->redirect()->toUrl(str_replace('/add/', '/edit/id/' . $id . '/', $this->getRequest()->getRequestUri()));
+                } else {
+                    return array(
+                        'form' => $form,
+                        'id'   => $id
+                    );
+                }
             }
         }
 

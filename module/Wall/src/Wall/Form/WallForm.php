@@ -9,12 +9,22 @@ class WallForm extends \Application\Form\EntityForm
         parent::__construct($name);
 
         $this->add(array(
+            'name' => 'user',
+            'attributes' => array(
+                'type'  => 'text',
+            ),
+            'options' => array(
+                'label' => 'Ваше имя',
+            ),
+        ));
+
+        $this->add(array(
             'name' => 'name',
             'attributes' => array(
                 'type'  => 'text',
             ),
             'options' => array(
-                'label' => 'Имя',
+                'label' => 'Заголовок сообщения',
             ),
         ));
 
@@ -24,17 +34,7 @@ class WallForm extends \Application\Form\EntityForm
                 'type'  => 'textarea',
             ),
             'options' => array(
-                'label' => 'Сообщение',
-            ),
-        ));
-
-        $this->add(array(
-            'name' => 'image',
-            'attributes' => array(
-                'type'  => 'file'
-            ),
-            'options' => array(
-                'label' => 'Картинка',
+                'label' => 'Текст сообщения',
             ),
         ));
 
