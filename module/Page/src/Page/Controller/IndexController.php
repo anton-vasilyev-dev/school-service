@@ -22,7 +22,6 @@ class IndexController extends \Account\Controller\EntityController
 
     public function showAction()
     {
-        \Zend\Debug\Debug::dump($this->params());
         $alias = $this->params()->fromRoute('alias', null);
         if ($alias == null) {
             throw new \Exception('Page not found');
